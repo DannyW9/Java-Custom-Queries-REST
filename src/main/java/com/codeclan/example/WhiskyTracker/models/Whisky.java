@@ -1,5 +1,8 @@
 package com.codeclan.example.WhiskyTracker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +22,9 @@ public class Whisky {
     @Column(name = "age")
     private int age;
 
+    @JsonIgnoreProperties("whiskies")
     @ManyToOne
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "distillery_id", nullable = false)
     private Distillery distillery;
 

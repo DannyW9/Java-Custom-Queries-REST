@@ -19,14 +19,14 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
     EntityManager entityManager;
 
     @Transactional
-    public List<Whisky> findWhiskysOfACertainAgeFromASpecificDistillery(Long distileryId, int age) {
+    public List<Whisky> findWhiskysOfACertainAgeFromASpecificDistillery(Long distilleryId, int age) {
         List<Whisky> result = null;
         Session session = entityManager.unwrap(Session.class);
 
         try {
             Criteria cr = session.createCriteria(Whisky.class);
             cr.createAlias("distillery", "distilleryAlias");
-            cr.add(Restrictions.eq("distilleryAlias.id", distileryId));
+            cr.add(Restrictions.eq("distilleryAlias.id", distilleryId));
             cr.add(Restrictions.eq("age", age));
             result = cr.list();
         } catch (HibernateException ex){
@@ -34,6 +34,22 @@ public class WhiskyRepositoryImpl implements WhiskyRepositoryCustom {
         }
 
 
+        return result;
+    }
+
+    @Transactional
+    public List<Whisky> findWhiskiesByRegion(String region) {
+        List<Whisky> result = null;
+        Session session = entityManager.unwrap(Session.class);
+
+        try {
+            Criteria cr = session.createCriteria(Whisky.class);
+            cr.createAlias("distillery", "distilleryAlias");
+            cr.add(Restrictions.eq("distilleryAlias.region", region));
+            result = cr.list();
+        } catch (HibernateException ex){
+            ex.printStackTrace();
+        }
         return result;
     }
 }
