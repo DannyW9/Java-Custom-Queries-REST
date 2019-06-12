@@ -5,6 +5,6 @@ import java.util.List;
 
 public interface WhiskyRepositoryCustom {
 
-    List<Whisky> findWhiskysOfACertainAgeFromASpecificDistillery(String distilleryName, int age);
+    List<Whisky> findWhiskysOfACertainAgeFromASpecificDistillery(Long distilleryId, int age);
 
 }

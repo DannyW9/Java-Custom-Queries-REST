@@ -42,7 +42,7 @@ public class WhiskyTrackerApplicationTests {
 
 	@Test
 	public void canFindWhiskysFromASpecificDistilleryByAge() {
-		List<Whisky> found = whiskyRepository.findWhiskysOfACertainAgeFromASpecificDistillery("Glendronach", 12);
+		List<Whisky> found = whiskyRepository.findWhiskysOfACertainAgeFromASpecificDistillery(1L, 12);
 		assertEquals(1, found.size());
 	}
 }
